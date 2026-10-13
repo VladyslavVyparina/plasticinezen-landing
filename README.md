@@ -1,45 +1,36 @@
-# PlasticineZen
+# PlasticineZen landing
 
-Односторінковий лендінг курсу: програма, приклад уроку, форма подяки і розмітка під HTML-блок SendPulse.
+A single-page course landing page built to drop into a SendPulse HTML block, with a lesson sample and a thank-you page.
 
-**Стек.** HTML, CSS, JavaScript.
+## Problem
 
-Публічний кейс. Робоча копія з паролями і базами лишається локально і сюди не входить.
+The course needed a page that listed the program, showed a sample lesson, and collected a purchase, and the mailing tool in use only accepts an HTML block plus files you host yourself.
 
----
+## What was built
 
-# PlasticineZen — клієнтський лендінг (`site_client`)
+- `index.html` is one document: sections and styles together, ready to paste into SendPulse.
+- `images/` holds the logo, the hero polaroid, the program header, and material photos.
+- `videos/pryklad-uroku.mp4` is the sample lesson, played with a plain HTML5 player. Host that folder next to the HTML.
+- `thank-you.html` is the page after the form.
+- `form.html` and the `sendpulse-*.js` files are the form and the thank-you behavior split out for the mailing tool.
+- `email-templete.html` is the matching email layout.
 
-## Файли
+## How it works
 
-- `index.html` — один файл: усі блоки + стилі всередині, готовий до вставки в SendPulse (HTML-блок).
-- `images/` — локальні зображення (лого-пірамідка, полароїд для hero, шапка «програма», фото матеріалів).
-- `videos/pryklad-uroku.mp4` — приклад уроку для блоку «Як проходить урок» (HTML5-плеєр). Завантажуйте папку `videos` на хост разом із `index.html`.
+The page is static. Purchase buttons are `href="#"` until a real LiqPay or SendPulse payment URL is pasted in. The Instagram link in the footer is a placeholder the same way. Nothing on the page calls a backend in this repository.
 
-## Що замінити перед публікацією
+## Stack
 
-1. **Instagram** — у футері знайдіть `href` у `.ig-link` і за потреби змініть на свій профіль.
-2. **Кнопки «Купити» / «Отримати доступ»** — підставте URL оплати LiqPay / SendPulse (зараз у фінальному блоці `href="#"`).
-3. **Відео прикладу** — файл `videos/pryklad-uroku.mp4`; за потреби замініть відео, зберігши шлях або оновіть `src` у тезі `<video>` у блоці «Як проходить урок».
-4. **Картинки з папки `images/`** — у SendPulse замініть шляхи `images/...` на повні URL після завантаження файлів у файловий менеджер (як ти робив для уроків).
+HTML, CSS, JavaScript.
 
-## Адаптивність
+## Run locally
 
-- **Телефон (за замовчуванням):** вузькі картки 9:16, одна колонка, зручні відступи.
-- **Планшет (~640px+):** ширший контейнер, крупніший текст у програмі.
-- **ПК (~900px+):** герой у два стовпці (текст + полароїд), «Чому мами» — сітка 2×3, програма — 3 колонки, матеріали — фото й списки поруч, відео — заголовок зліва і плеєр справа, FAQ — 2 колонки, юридичний блок ширший.
-- **Великий екран (~1200px+):** уроки в **4** колонки, причини — **3** колонки.
+Open `index.html` in a browser, or serve the folder:
 
-## Порядок блоків на сторінці
+```bash
+python3 -m http.server 8080
+```
 
-1. Герой (Stories-стиль)  
-2. Чому мами обирають нас  
-3. Програма (заголовок + фон + полароїди)  
-4. Необхідні матеріали  
-5. Відео «Як проходить урок»  
-6. Фінальний заклик (біла картка)  
-7. FAQ  
-8. Оферта / Політика / Контакти — згортаються по кліку  
-9. Оплата і безпека (акордеон) + логотипи + Instagram
+## Before publishing the page
 
-Картинки уроків зараз з тих самих URL на `fm.sendpul.se`, що й раніше; за бажанням замініть на свої.
+Replace the Instagram URL and point every buy button at the real checkout. Upload `videos/` with the HTML.
